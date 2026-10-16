@@ -2,37 +2,38 @@
 "use client";
 
 import { useState } from "react";
-import "./globals.css";
+
+type Detail = [label: string, value: string];
 
 export default function Home() {
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
 
-  const personalDetails = [
+  const personalDetails: Detail[] = [
     ["Full Name", "ABDUL AHAD"],
     ["Date of Birth", "01-12-1999"],
     ["Place of Birth", "Chandpur"],
-    ["Height", "5' 6\""],
+    ["Height", '5\' 6"'],
     ["Complexion", "Brown"],
     ["Blood Group", "B+"],
     ["Religion", "Islam"],
     ["Marital Status", "Single"],
   ];
 
-  const educationDetails = [
+  const educationDetails: Detail[] = [
     ["Education", "Kamil (Hadith)"],
     ["Institute", "Nischintapur D.S. Islamia Kamil Madrasah"],
     ["Occupation", "Small Business"],
     ["Work Location", "Mirpur-10, Dhaka"],
   ];
 
-  const familyDetails = [
+  const familyDetails: Detail[] = [
     ["Father's Name", "Md. Nurul Islam"],
     ["Father's Occupation", "Farmer"],
     ["Mother's Name", "Shamsun Nahar"],
     ["Mother's Occupation", "Homemaker"],
   ];
 
-  const siblings = [
+  const siblings: Detail[] = [
     ["Elder Brother", "Farmer, Married"],
     ["Elder Sister", "Homemaker, Married"],
     ["Elder Brother", "Job Holder, Married"],
@@ -42,13 +43,17 @@ export default function Home() {
     ["Younger Sister", "Student (B.Sc. in CSE), Unmarried"],
   ];
 
-  const contactDetails = [
+  const contactDetails: Detail[] = [
     ["Contact Person", "Self"],
     ["Phone Number", "+880 1580 603022"],
     ["Email Address", "devs.abdulahad@gmail.com"],
   ];
 
-  function renderRows(details, section) {
+  function toggleRow(rowId: string) {
+    setSelectedRow((current) => (current === rowId ? null : rowId));
+  }
+
+  function renderRows(details: Detail[], section: string) {
     return details.map(([label, value], index) => {
       const rowId = `${section}-${index}`;
 
@@ -58,9 +63,7 @@ export default function Home() {
           className={`row ${
             selectedRow === rowId ? "clicked-highlight" : ""
           }`}
-          onClick={() =>
-            setSelectedRow(selectedRow === rowId ? null : rowId)
-          }
+          onClick={() => toggleRow(rowId)}
         >
           <div className="cell label">{label}</div>
           <div className="cell value">{value}</div>
@@ -69,7 +72,11 @@ export default function Home() {
     });
   }
 
-  function renderSection(title, details, section) {
+  function renderSection(
+    title: string,
+    details: Detail[],
+    section: string
+  ) {
     return (
       <>
         <div className="section-title">{title}</div>
@@ -87,7 +94,11 @@ export default function Home() {
         <p>Personal Profile &amp; Family Details</p>
       </header>
 
-      {renderSection("1. Personal Details", personalDetails, "personal")}
+      {renderSection(
+        "1. Personal Details",
+        personalDetails,
+        "personal"
+      )}
 
       {renderSection(
         "2. Educational & Professional Details",
@@ -106,20 +117,14 @@ export default function Home() {
               ? "clicked-highlight"
               : ""
           }`}
-          onClick={() =>
-            setSelectedRow(
-              selectedRow === "siblings-details"
-                ? null
-                : "siblings-details"
-            )
-          }
+          onClick={() => toggleRow("siblings-details")}
         >
           <div className="cell label">Siblings Details</div>
 
           <div className="cell value">
             <ul className="siblings-list">
               {siblings.map(([relation, details], index) => (
-                <li key={index}>
+                <li key={`sibling-${index}`}>
                   <strong>{relation}:</strong> {details}
                 </li>
               ))}
@@ -133,11 +138,7 @@ export default function Home() {
               ? "clicked-highlight"
               : ""
           }`}
-          onClick={() =>
-            setSelectedRow(
-              selectedRow === "siblings-count" ? null : "siblings-count"
-            )
-          }
+          onClick={() => toggleRow("siblings-count")}
         >
           <div className="cell label">Siblings</div>
           <div className="cell value">2 Brothers, 4 Sisters</div>
@@ -147,9 +148,7 @@ export default function Home() {
           className={`row ${
             selectedRow === "address" ? "clicked-highlight" : ""
           }`}
-          onClick={() =>
-            setSelectedRow(selectedRow === "address" ? null : "address")
-          }
+          onClick={() => toggleRow("address")}
         >
           <div className="cell label">Permanent Address</div>
           <div className="cell value">
