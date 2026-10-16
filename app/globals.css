@@ -1,0 +1,202 @@
+
+:root {
+  --primary-color: #1f4e79;
+  --secondary-color: #eef4f8;
+  --hover-bg: #e2f0d9;
+  --active-bg: #fff2cc;
+  --text-color: #333333;
+  --border-color: #dcdcdc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f7f9fb;
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  margin: 15mm auto;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.header h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  color: #666666;
+  font-style: italic;
+}
+
+/* Section headings */
+
+.section-title {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Biodata rows */
+
+.biodata-list {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.row {
+  display: table-row;
+  transition:
+    background-color 0.2s ease,
+    border-left 0.2s ease;
+  cursor: pointer;
+}
+
+.row:nth-child(even) {
+  background-color: var(--secondary-color);
+}
+
+.cell {
+  display: table-cell;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.cell.label {
+  width: 35%;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.cell.value {
+  width: 65%;
+  color: #222222;
+}
+
+/* Hover effect */
+
+.row:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+/* Selected row */
+
+.row.clicked-highlight {
+  background-color: var(--active-bg) !important;
+  border-left: 5px solid #d97706;
+  font-weight: 600;
+}
+
+/* Siblings list */
+
+.siblings-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.siblings-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* Responsive design */
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    width: 100%;
+    min-height: auto;
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 14px;
+  }
+
+  .cell {
+    padding: 9px 8px;
+    font-size: 13px;
+  }
+
+  .cell.label {
+    width: 38%;
+  }
+
+  .cell.value {
+    width: 62%;
+  }
+}
+
+/* Print / Save as PDF */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
+  }
+
+  .row {
+    break-inside: avoid;
+  }
+
+  .section-title {
+    break-after: avoid;
+  }
+}
