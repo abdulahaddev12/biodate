@@ -34,13 +34,12 @@ export default function Home() {
   ];
 
   const siblings: Detail[] = [
-    ["Elder Brother", "Farmer, Married"],
-    ["Elder Sister", "Homemaker, Married"],
-    ["Elder Brother", "Job Holder, Married"],
-    ["Elder Sister", "Homemaker, Married"],
-    ["Elder Sister", "Homemaker, Married"],
-    ["Elder Sister", "Homemaker, Married"],
-    ["Younger Sister", "Student (B.Sc. in CSE), Unmarried"],
+    ["Sofi Ullah", "Farmer, Married"],
+    ["Parvin Sultana", "Homemaker, Married"],
+    ["Imran Hossain", "Job Holder, Married"],
+    ["Fahima", "Homemaker, Married"],
+    ["Jannatul Ferdous", "Homemaker, Married"],
+    ["Taslima Akter", "Homemaker, Married"],
   ];
 
   const contactDetails: Detail[] = [
